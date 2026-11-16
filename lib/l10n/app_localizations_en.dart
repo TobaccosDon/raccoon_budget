@@ -46,7 +46,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get balanceLabel => 'Total remaining';
 
   @override
-  String get daysLeftLabel => 'Until payday';
+  String get daysLeftLabel => 'Remaining';
 
   @override
   String get expenseTitle => 'Add expense';

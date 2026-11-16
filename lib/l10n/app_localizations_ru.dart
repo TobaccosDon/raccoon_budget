@@ -28,7 +28,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get todayLimitLabel => 'Из дневного лимита';
 
   @override
-  String get spentTodayLabel => 'Сегодня потрачено';
+  String get spentTodayLabel => 'Потрачено сегодня';
 
   @override
   String dayCount(num count) {
@@ -48,7 +48,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get balanceLabel => 'Осталось всего';
 
   @override
-  String get daysLeftLabel => 'До зарплаты';
+  String get daysLeftLabel => 'Осталось';
 
   @override
   String get expenseTitle => 'Добавить расход';

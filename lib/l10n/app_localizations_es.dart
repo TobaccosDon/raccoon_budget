@@ -46,7 +46,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get balanceLabel => 'Total restante';
 
   @override
-  String get daysLeftLabel => 'Hasta el día de pago';
+  String get daysLeftLabel => 'Restante';
 
   @override
   String get expenseTitle => 'Añadir gasto';

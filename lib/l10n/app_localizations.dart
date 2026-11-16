@@ -157,7 +157,7 @@ abstract class AppLocalizations {
   /// No description provided for @daysLeftLabel.
   ///
   /// In en, this message translates to:
-  /// **'Until payday'**
+  /// **'Remaining'**
   String get daysLeftLabel;
 
   /// No description provided for @expenseTitle.

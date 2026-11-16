@@ -1179,8 +1179,23 @@ class _BudgetScreenState extends State<BudgetScreen>
     return Scaffold(
       backgroundColor: const Color(0xFFFFFAF2),
       body: SafeArea(
-        child: Stack(
-          children: [
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            // Keep the complete Rive-based interface in a phone-shaped frame
+            // on wide web screens. On narrow screens it fills the available area.
+            const designAspectRatio = 9 / 19.5;
+            final frameWidth = constraints.maxWidth <
+                    constraints.maxHeight * designAspectRatio
+                ? constraints.maxWidth
+                : constraints.maxHeight * designAspectRatio;
+            final frameHeight = frameWidth / designAspectRatio;
+
+            return Center(
+              child: SizedBox(
+                width: frameWidth,
+                height: frameHeight,
+                child: Stack(
+                  children: [
             Positioned.fill(
               child: RiveWidgetBuilder(
                 key: ValueKey(_mascotStateMachine),
@@ -1315,6 +1330,28 @@ class _BudgetScreenState extends State<BudgetScreen>
               ),
             ),
 
+            // The amount is rendered inside the Rive artboard. This localized
+            // caption sits directly above it and scales with the phone frame.
+            if (_dayTrackingInitialized && _workflowState == 'active')
+              Positioned(
+                left: 0,
+                right: 0,
+                bottom: frameHeight * 0.235,
+                child: IgnorePointer(
+                  child: Transform.scale(
+                    scale: frameWidth / 471,
+                    child: Text(
+                      texts.spentTodayLabel,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF55504D),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+
             if (_dayTrackingInitialized &&
                 (_workflowState == 'dayReview' || _needsDayReview))
               Positioned.fill(
@@ -1392,7 +1429,11 @@ class _BudgetScreenState extends State<BudgetScreen>
 
 
 
-          ],
+                  ],
+                ),
+              ),
+            );
+          },
         ),
       ),
     );
